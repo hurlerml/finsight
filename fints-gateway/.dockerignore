@@ -1,0 +1,17 @@
+.git
+.env
+.env.*
+.DS_Store
+target
+*.log
+backups
+exports
+*.db
+*.sqlite*
+*.sql
+*.dump
+*.pgdump
+*.pem
+*.key
+*.p12
+*.pfx

@@ -1,0 +1,52 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+target/
+
+# Node
+node_modules/
+frontend/dist/
+.pnpm-store/
+*.tsbuildinfo
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker / local data
+postgres-data/
+*.log
+.cache/
+
+# Local exports, database dumps and backups
+backups/
+exports/
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.dump
+*.pgdump
+*.pem
+*.key
+*.p12
+*.pfx

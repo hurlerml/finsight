@@ -1,0 +1,186 @@
+/*
+  Palette: glass-insight
+  Frosted glass / insight UI — soft glows, translucent surfaces, freer accents.
+  Accent = teal (insight), agent = violet (AI). Rounded radii via Tailwind defaults.
+*/
+
+:root {
+  color-scheme: light;
+
+  --background: 214 18% 93%;
+  --foreground: 222 36% 16%;
+  --card: 0 0% 100%;
+  --card-foreground: 230 25% 14%;
+  --muted: 212 32% 93%;
+  --muted-foreground: 218 14% 44%;
+  --border: 212 28% 87%;
+  --input: 0 0% 100%;
+
+  --primary: 217 68% 57%;
+  --primary-foreground: 210 40% 98%;
+
+  --accent: 174 42% 39%;
+  --accent-foreground: 0 0% 100%;
+
+  --agent: 258 44% 57%;
+  --agent-foreground: 0 0% 100%;
+
+  --warning: 38 85% 48%;
+  --warning-foreground: 30 40% 12%;
+
+  --danger: 8 52% 58%;
+  --danger-foreground: 0 0% 100%;
+
+  --ring: 217 68% 57%;
+  --category-label-foreground: 222 32% 20%;
+
+  /* Atmospheric glow blobs (used by body background) */
+  --glow-1: 198 58% 82%;
+  --glow-2: 257 48% 86%;
+  --glow-3: 170 44% 83%;
+
+  --glass-border: 0 0% 100%;
+  --glass-border-opacity: 0.72;
+  --glass-highlight: 0 0% 100%;
+  --glass-highlight-opacity: 0.76;
+  --glass-specular-top-opacity: 0.68;
+  --glass-outline-opacity: 0.16;
+  --glass-bevel-shadow-opacity: 0.18;
+  --glass-contact-shadow-opacity: 0.2;
+  --glass-float-shadow-opacity: 0.28;
+  --glass-shadow: 225 35% 28%;
+  --glass-shadow-opacity: 0.27;
+  --glass-milk: 0 0% 100%;
+  --glass-milk-opacity: 0.42;
+
+  --chart-expense-1: 215 52% 72%;
+  --chart-expense-2: 252 38% 73%;
+  --chart-expense-3: 198 48% 70%;
+  --chart-expense-4: 280 34% 74%;
+  --chart-expense-5: 335 42% 74%;
+  --chart-expense-6: 38 58% 72%;
+  --chart-expense-7: 228 42% 78%;
+  --chart-expense-8: 205 20% 72%;
+
+  --chart-income-1: 103 30% 65%;
+  --chart-income-2: 113 32% 69%;
+  --chart-income-3: 145 32% 66%;
+  --chart-income-4: 169 34% 67%;
+  --chart-income-5: 184 38% 70%;
+
+  --chart-link: 220 18% 82%;
+  --flow-income: 104 34% 72%;
+  --flow-balance: 43 72% 73%;
+  --flow-expense: 18 52% 74%;
+  --flow-saving: 153 38% 60%;
+  --flow-saving-link: 153 30% 84%;
+
+  --cat-housing: 215 52% 75%;
+  --cat-groceries: 104 32% 72%;
+  --cat-mobility: 198 48% 72%;
+  --cat-subscriptions: 254 38% 75%;
+  --cat-dining: 30 54% 75%;
+  --cat-shopping: 335 42% 76%;
+  --cat-health: 4 58% 66%;
+  --cat-leisure: 280 34% 76%;
+  --cat-travel: 215 52% 75%;
+  --cat-family: 335 42% 76%;
+  --cat-education: 166 34% 70%;
+  --cat-savings: 146 34% 72%;
+  --cat-finance: 210 12% 73%;
+  --cat-income: 104 35% 67%;
+  --cat-other: 210 15% 73%;
+  --cat-transfer: 228 42% 78%;
+  --cat-salary: 104 35% 67%;
+  --cat-fallback: 210 18% 72%;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: 224 30% 10%;
+  --foreground: 220 20% 94%;
+  --card: 230 25% 14%;
+  --card-foreground: 220 20% 94%;
+  --muted: 230 20% 16%;
+  --muted-foreground: 220 12% 68%;
+  --border: 230 18% 24%;
+  --input: 230 22% 16%;
+
+  --primary: 217 48% 60%;
+  --primary-foreground: 224 35% 10%;
+
+  --accent: 174 44% 50%;
+  --accent-foreground: 230 30% 8%;
+
+  --agent: 258 48% 64%;
+  --agent-foreground: 230 30% 8%;
+
+  --warning: 40 90% 55%;
+  --warning-foreground: 30 40% 10%;
+
+  --danger: 8 38% 59%;
+  --danger-foreground: 0 0% 100%;
+
+  --ring: 217 48% 60%;
+  --category-label-foreground: 220 20% 95%;
+
+  --glow-1: 210 38% 34%;
+  --glow-2: 258 34% 34%;
+  --glow-3: 174 32% 28%;
+
+  --glass-border: 220 30% 92%;
+  --glass-border-opacity: 0.14;
+  --glass-highlight: 220 40% 100%;
+  --glass-highlight-opacity: 0.12;
+  --glass-specular-top-opacity: 0.34;
+  --glass-outline-opacity: 0.14;
+  --glass-bevel-shadow-opacity: 0.2;
+  --glass-contact-shadow-opacity: 0.3;
+  --glass-float-shadow-opacity: 0.48;
+  --glass-shadow: 235 60% 2%;
+  --glass-shadow-opacity: 0.62;
+  --glass-milk: 220 24% 92%;
+  --glass-milk-opacity: 0.09;
+
+  --chart-expense-1: 214 34% 56%;
+  --chart-expense-2: 252 28% 58%;
+  --chart-expense-3: 198 32% 53%;
+  --chart-expense-4: 280 25% 58%;
+  --chart-expense-5: 334 29% 58%;
+  --chart-expense-6: 38 34% 56%;
+  --chart-expense-7: 228 28% 61%;
+  --chart-expense-8: 205 15% 54%;
+
+  --chart-income-1: 104 24% 46%;
+  --chart-income-2: 114 25% 49%;
+  --chart-income-3: 145 27% 48%;
+  --chart-income-4: 168 27% 50%;
+  --chart-income-5: 184 29% 53%;
+
+  --chart-link: 220 16% 39%;
+  --flow-income: 142 34% 57%;
+  --flow-balance: 44 55% 61%;
+  --flow-expense: 5 48% 60%;
+  --flow-saving: 164 34% 54%;
+  --flow-saving-link: 164 22% 34%;
+
+  --cat-housing: 214 34% 57%;
+  --cat-groceries: 104 24% 48%;
+  --cat-mobility: 198 32% 54%;
+  --cat-subscriptions: 254 28% 59%;
+  --cat-dining: 30 32% 57%;
+  --cat-shopping: 334 29% 59%;
+  --cat-health: 4 50% 57%;
+  --cat-leisure: 280 25% 59%;
+  --cat-travel: 214 34% 57%;
+  --cat-family: 334 29% 59%;
+  --cat-education: 166 27% 51%;
+  --cat-savings: 146 27% 51%;
+  --cat-finance: 210 12% 55%;
+  --cat-income: 104 27% 45%;
+  --cat-other: 210 13% 55%;
+  --cat-transfer: 228 28% 61%;
+  --cat-salary: 104 27% 45%;
+  --cat-fallback: 210 15% 54%;
+}

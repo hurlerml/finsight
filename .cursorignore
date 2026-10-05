@@ -1,0 +1,12 @@
+# Keep secrets and local env out of Cursor agent context
+.env
+.env.*
+!.env.example
+
+# Local dumps / backups
+*.sql
+*.dump
+*.pgdump
+postgres-data/
+**/*secret*
+**/*credential*

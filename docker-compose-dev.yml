@@ -1,0 +1,82 @@
+# Dev workstation stack — can run alongside production-like compose.
+# Only Vite is published; it proxies /api and /docs to the API in this container.
+
+name: ${DEV_COMPOSE_PROJECT:-finsight-dev}
+
+services:
+  fints-gateway:
+    build:
+      context: ./fints-gateway
+      dockerfile: Dockerfile
+    container_name: ${USER:-finsight}-fints-gateway-dev
+    restart: unless-stopped
+    environment:
+      FINTS_GATEWAY_PORT: 8082
+    expose:
+      - "8082"
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: ${USER:-finsight}-postgres-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-finsight}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-finsight_change_me}
+      POSTGRES_DB: ${POSTGRES_DB:-finsight}
+    volumes:
+      - postgres-data-dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-finsight} -d ${POSTGRES_DB:-finsight}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  finsight-dev:
+    container_name: ${USER:-finsight}-app-dev
+    command: ["/bin/bash", "/home/devuser/app/docker/dev-entrypoint.sh"]
+    ports:
+      - "${DEV_FRONTEND_PORT:-5173}:5173"
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - POSTGRES_USER=${POSTGRES_USER:-finsight}
+      - DATABASE_URL=${DATABASE_URL:-postgresql+psycopg://${POSTGRES_USER:-finsight}:${POSTGRES_PASSWORD:-finsight_change_me}@postgres:5432/${POSTGRES_DB:-finsight}}
+      - HOME=/home/devuser
+      # Empty = same-origin /api through the Vite proxy. This also works from LAN devices.
+      - VITE_API_URL=${VITE_API_URL:-}
+      # Uvicorn listens privately on 8080; Vite exposes it through same-origin /api.
+      - API_PORT=8080
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173,http://localhost}
+      - SYNC_OVERLAP_DAYS=${SYNC_OVERLAP_DAYS:-14}
+      - VAULT_IDLE_TIMEOUT_MINUTES=${VAULT_IDLE_TIMEOUT_MINUTES:-60}
+      - FINTS_PRODUCT_ID=${FINTS_PRODUCT_ID:-}
+      - FINTS_GATEWAY_URL=http://fints-gateway:8082
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-gemma4:26b-mlx}
+      - OLLAMA_EMBEDDING_MODEL=${OLLAMA_EMBEDDING_MODEL:-qwen3-embedding:4b}
+      - OLLAMA_CONTEXT_WINDOW=${OLLAMA_CONTEXT_WINDOW:-32768}
+      - OLLAMA_OUTPUT_TOKENS=${OLLAMA_OUTPUT_TOKENS:-8192}
+      - CATEGORIZATION_WEB_SEARCH_ENABLED=${CATEGORIZATION_WEB_SEARCH_ENABLED:-true}
+      - DEBUG_LLM=${DEBUG_LLM:-false}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - .:/home/devuser/app
+      - node-modules-dev:/home/devuser/app/frontend/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+      fints-gateway:
+        condition: service_started
+    shm_size: "1gb"
+
+volumes:
+  postgres-data-dev:
+  node-modules-dev:

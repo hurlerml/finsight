@@ -1,0 +1,137 @@
+/*
+  Palette: ink-copper
+  Cooler graphite paper + copper accent + steel-blue agent.
+  Swap in index.css: @import "./themes/ink-copper.css";
+*/
+
+:root {
+  color-scheme: light;
+
+  --background: 220 10% 96%;
+  --foreground: 220 16% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 16% 12%;
+  --muted: 220 8% 92%;
+  --muted-foreground: 220 8% 38%;
+  --border: 220 8% 84%;
+  --input: 0 0% 100%;
+
+  --primary: 220 14% 14%;
+  --primary-foreground: 40 12% 98%;
+
+  --accent: 24 58% 42%;
+  --accent-foreground: 30 20% 98%;
+
+  --agent: 200 45% 38%;
+  --agent-foreground: 0 0% 100%;
+
+  --warning: 28 65% 46%;
+  --warning-foreground: 24 40% 10%;
+
+  --danger: 0 65% 46%;
+  --danger-foreground: 0 0% 100%;
+
+  --ring: 24 58% 42%;
+
+  --chart-expense-1: 220 14% 14%;
+  --chart-expense-2: 220 10% 26%;
+  --chart-expense-3: 220 8% 38%;
+  --chart-expense-4: 220 6% 50%;
+  --chart-expense-5: 220 6% 62%;
+  --chart-expense-6: 220 6% 72%;
+  --chart-expense-7: 220 8% 82%;
+  --chart-expense-8: 220 10% 90%;
+
+  --chart-income-1: 20 55% 30%;
+  --chart-income-2: 24 58% 42%;
+  --chart-income-3: 26 62% 52%;
+  --chart-income-4: 28 65% 62%;
+  --chart-income-5: 30 55% 72%;
+
+  --chart-link: 200 40% 50%;
+  --flow-saving: 153 38% 48%;
+  --flow-saving-link: 153 28% 82%;
+
+  --glow-1: 220 30% 82%;
+  --glow-2: 24 40% 78%;
+  --glow-3: 200 25% 80%;
+
+  --cat-housing: 220 14% 16%;
+  --cat-groceries: 220 10% 26%;
+  --cat-mobility: 220 8% 34%;
+  --cat-subscriptions: 220 6% 42%;
+  --cat-dining: 220 6% 50%;
+  --cat-shopping: 220 6% 58%;
+  --cat-health: 220 8% 66%;
+  --cat-savings: 24 54% 58%;
+  --cat-other: 220 6% 46%;
+  --cat-transfer: 220 4% 56%;
+  --cat-salary: 24 58% 42%;
+  --cat-fallback: 220 6% 44%;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: 220 12% 7%;
+  --foreground: 40 8% 94%;
+  --card: 220 10% 10%;
+  --card-foreground: 40 8% 94%;
+  --muted: 220 8% 14%;
+  --muted-foreground: 220 6% 62%;
+  --border: 220 8% 18%;
+  --input: 220 10% 12%;
+
+  --primary: 40 10% 94%;
+  --primary-foreground: 220 12% 8%;
+
+  --accent: 26 70% 54%;
+  --accent-foreground: 24 40% 10%;
+
+  --agent: 198 65% 58%;
+  --agent-foreground: 220 12% 8%;
+
+  --warning: 30 72% 55%;
+  --warning-foreground: 24 40% 10%;
+
+  --danger: 0 70% 55%;
+  --danger-foreground: 0 0% 100%;
+
+  --ring: 26 70% 54%;
+
+  --chart-expense-1: 220 8% 90%;
+  --chart-expense-2: 220 6% 76%;
+  --chart-expense-3: 220 5% 64%;
+  --chart-expense-4: 220 5% 52%;
+  --chart-expense-5: 220 6% 42%;
+  --chart-expense-6: 220 6% 32%;
+  --chart-expense-7: 220 8% 24%;
+  --chart-expense-8: 220 10% 18%;
+
+  --chart-income-1: 22 55% 36%;
+  --chart-income-2: 26 65% 48%;
+  --chart-income-3: 28 70% 58%;
+  --chart-income-4: 30 68% 66%;
+  --chart-income-5: 32 55% 74%;
+
+  --chart-link: 198 50% 55%;
+  --flow-saving: 153 30% 54%;
+  --flow-saving-link: 153 20% 28%;
+
+  --glow-1: 220 25% 18%;
+  --glow-2: 24 30% 16%;
+  --glow-3: 200 25% 14%;
+
+  --cat-housing: 220 8% 88%;
+  --cat-groceries: 220 6% 76%;
+  --cat-mobility: 220 5% 66%;
+  --cat-subscriptions: 220 5% 56%;
+  --cat-dining: 220 6% 48%;
+  --cat-shopping: 220 6% 40%;
+  --cat-health: 220 7% 34%;
+  --cat-savings: 26 55% 56%;
+  --cat-other: 220 5% 54%;
+  --cat-transfer: 220 4% 46%;
+  --cat-salary: 26 70% 54%;
+  --cat-fallback: 220 5% 52%;
+}

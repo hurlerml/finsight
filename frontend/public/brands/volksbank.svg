@@ -1,0 +1,11 @@
+<!-- Adapted from BVR's Volksbank logo (CC BY-SA 4.0):
+     https://commons.wikimedia.org/wiki/File:Volksbank_Logo.svg
+     Paths cleaned for web use; colors adjusted to the current brand values. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 608.28125 417.75" role="img" aria-labelledby="title">
+  <title id="title">Volksbanken Raiffeisenbanken</title>
+  <g transform="translate(-45.859375 -323.48718)">
+    <path fill="#fff" d="M45.859 323.487v417.75H654.14v-417.75H45.86Z"/>
+    <path fill="#ff6600" d="M416.266 651.8c-6.003 31.507-11.09 58.263-13.063 68.656h233.469V651.8H416.266Zm-357.813.625v68.656h231.813l-15.469-68.656H58.453Z"/>
+    <path fill="#0066b3" d="m172.349 495.003-16.872-71.024h143.955l46.62 203.879h1.99l29.37-130.602c14.8-59.299 20.39-73.277 103.797-73.277h59.989s-12.12 54.662-27.199 113.977c-5.74 22.628-55.829 19.947-53.33-1.184.264-2.203 2.632-18.105 4.506-29.42 2.73-16.28-16.263-18.319-19.684-2.203-2.434 11.544-13.435 68.837-23.713 122.709h214.896V335.113H58.428v292.745h209.848l-29.896-132.756-66.041-.099Z"/>
+  </g>
+</svg>

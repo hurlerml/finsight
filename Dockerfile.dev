@@ -1,0 +1,75 @@
+FROM ubuntu:24.04
+
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+ARG DEBIAN_FRONTEND=noninteractive
+
+# System deps: Python, Node (Vite), Postgres client, shell tools
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+      curl ca-certificates gnupg \
+      python3 python3-pip python3-venv \
+      git zsh vim sudo screen build-essential libpq-dev \
+      postgresql-client && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y --no-install-recommends nodejs && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Non-root user matching host UID:GID (avoids permission issues on mounted volumes).
+# macOS host GID is often 20 (staff); Ubuntu already has GID 20 (dialout) — reuse it.
+RUN set -eux; \
+    if getent group "${GROUP_ID}" >/dev/null; then \
+      GROUP_NAME="$(getent group "${GROUP_ID}" | cut -d: -f1)"; \
+    else \
+      groupadd -g "${GROUP_ID}" devgroup; \
+      GROUP_NAME=devgroup; \
+    fi; \
+    if id -u devuser >/dev/null 2>&1; then \
+      usermod -u "${USER_ID}" -g "${GROUP_NAME}" -s /usr/bin/zsh devuser; \
+    elif getent passwd "${USER_ID}" >/dev/null; then \
+      useradd -m -u "${USER_ID}" -g "${GROUP_NAME}" -s /usr/bin/zsh -o devuser; \
+    else \
+      useradd -m -u "${USER_ID}" -g "${GROUP_NAME}" -s /usr/bin/zsh devuser; \
+    fi; \
+    usermod -aG sudo devuser; \
+    echo "devuser ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/devuser; \
+    chmod 440 /etc/sudoers.d/devuser
+
+USER ${USER_ID}:${GROUP_ID}
+ENV HOME=/home/devuser
+ENV VIRTUAL_ENV=/home/devuser/.venv
+ENV PATH="${VIRTUAL_ENV}/bin:${HOME}/.local/bin:${PATH}"
+ENV PYTHONUNBUFFERED=1
+
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
+    git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions && \
+    sed -i 's/plugins=(git)/plugins=(git docker colored-man-pages command-not-found zsh-autosuggestions zsh-syntax-highlighting zsh-completions)/' $HOME/.zshrc && \
+    sed -i 's/ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' $HOME/.zshrc && \
+    echo "export TERM=xterm-256color" >> $HOME/.zshrc && \
+    echo 'fpath+=(${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions/src)' >> $HOME/.zshrc && \
+    echo 'autoload -Uz compinit && compinit' >> $HOME/.zshrc && \
+    echo 'ZSH_DISABLE_COMPFIX=true' >> $HOME/.zshrc && \
+    rm -rf $HOME/.zcompdump* /tmp/* /var/tmp/*
+
+WORKDIR /home/devuser/app
+
+# Python deps (backend) — preinstalled in the image
+COPY --chown=${USER_ID}:${GROUP_ID} backend/requirements.txt /tmp/requirements.txt
+RUN python3 -m venv "${VIRTUAL_ENV}" && \
+    pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt 'pytest>=8.0,<10.0' && \
+    rm /tmp/requirements.txt && \
+    sudo env PATH="${VIRTUAL_ENV}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+      python -m playwright install-deps chromium && \
+    python -m playwright install chromium
+
+COPY --chown=${USER_ID}:${GROUP_ID} docker/dev-entrypoint.sh /home/devuser/dev-entrypoint.sh
+RUN chmod +x /home/devuser/dev-entrypoint.sh
+
+EXPOSE 5173 8080
+
+CMD ["/home/devuser/dev-entrypoint.sh"]

@@ -1,0 +1,92 @@
+# Production-like stack — can run alongside docker-compose-dev.yml.
+# Only the UI is published. nginx proxies /api to the private backend service.
+
+name: ${PROD_COMPOSE_PROJECT:-finsight-prod}
+
+services:
+  fints-gateway:
+    build:
+      context: ./fints-gateway
+      dockerfile: Dockerfile
+    container_name: ${USER:-finsight}-fints-gateway-prod
+    restart: unless-stopped
+    environment:
+      FINTS_GATEWAY_PORT: 8082
+    expose:
+      - "8082"
+    networks:
+      - app
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: ${USER:-finsight}-postgres-prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-finsight}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-finsight_change_me}
+      POSTGRES_DB: ${POSTGRES_DB:-finsight}
+    volumes:
+      - postgres-data-prod:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-finsight} -d ${POSTGRES_DB:-finsight}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - app
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: ${USER:-finsight}-backend-prod
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-finsight}:${POSTGRES_PASSWORD:-finsight_change_me}@postgres:5432/${POSTGRES_DB:-finsight}
+      API_HOST: 0.0.0.0
+      API_PORT: 8080
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost}
+      SYNC_OVERLAP_DAYS: ${SYNC_OVERLAP_DAYS:-14}
+      VAULT_IDLE_TIMEOUT_MINUTES: ${VAULT_IDLE_TIMEOUT_MINUTES:-60}
+      FINTS_PRODUCT_ID: ${FINTS_PRODUCT_ID:-}
+      FINTS_GATEWAY_URL: http://fints-gateway:8082
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-gemma4:26b-mlx}
+      OLLAMA_EMBEDDING_MODEL: ${OLLAMA_EMBEDDING_MODEL:-qwen3-embedding:4b}
+      OLLAMA_CONTEXT_WINDOW: ${OLLAMA_CONTEXT_WINDOW:-32768}
+      OLLAMA_OUTPUT_TOKENS: ${OLLAMA_OUTPUT_TOKENS:-8192}
+      CATEGORIZATION_WEB_SEARCH_ENABLED: ${CATEGORIZATION_WEB_SEARCH_ENABLED:-true}
+      DEBUG_LLM: ${DEBUG_LLM:-false}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      fints-gateway:
+        condition: service_started
+    expose:
+      - "8080"
+    networks:
+      - app
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Empty = relative /api via nginx proxy (recommended)
+        VITE_API_URL: ${PROD_VITE_API_URL:-}
+    container_name: ${USER:-finsight}-frontend-prod
+    restart: unless-stopped
+    ports:
+      - "${PROD_FRONTEND_PORT:-80}:80"
+    depends_on:
+      - backend
+    networks:
+      - app
+
+volumes:
+  postgres-data-prod:
+
+networks:
+  app:
