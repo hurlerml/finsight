@@ -579,7 +579,7 @@ export const AssetsPage = memo(function AssetsPage() {
                         content={(props) => <AssetTooltip {...props} currency={history.currency} language={i18n.language} period={period} fallbackCost={totals.performanceCost} />}
                       />
                       <Area
-                        type="monotone"
+                        type="linear"
                         dataKey={instrumentChartMode === "price" && isInstrument ? "value" : showsPerformance ? "performance" : "value"}
                         stroke={instrumentChartMode === "price" && isInstrument ? "hsl(var(--accent))" : showsPerformance ? "url(#assetPerformanceStroke)" : "hsl(var(--accent))"}
                         strokeWidth={2.25}

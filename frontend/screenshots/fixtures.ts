@@ -156,9 +156,10 @@ const conversation = {
 };
 
 const syntheticPerformancePercent = [
-  -3.2, -1.8, -4.1, -2.6, 0.7, -0.9, 1.6, 0.2, 2.9, 1.4,
-  4.6, 3.0, 5.7, 4.1, 6.3, 5.0, 7.9, 6.2, 9.1, 7.3,
-  10.4, 8.9, 11.8, 10.2, 13.1, 11.4, 14.8, 12.6, 15.5, 14.3,
+  -3.2, -2.4, -4.1, -3.7, -1.6, 0.8, 0.1, -0.9, 1.5, 1.2,
+  3.9, 2.7, 3.3, 6.1, 5.4, 7.0, 5.8, 6.4, 8.9, 10.2,
+  8.6, 9.4, 8.1, 11.3, 12.7, 11.9, 13.8, 12.1, 12.9, 15.2,
+  14.6, 16.0, 15.7, 13.9, 15.1, 14.3,
 ];
 
 const historyPoints = syntheticPerformancePercent.map((performancePercent, index) => {
@@ -166,7 +167,7 @@ const historyPoints = syntheticPerformancePercent.map((performancePercent, index
   const invested = 26000 + (33596.14 - 26000) * progress;
   const value = invested * (1 + performancePercent / 100);
   return {
-    timestamp: new Date(Date.UTC(2024, 4 + index, 1)).toISOString(),
+    timestamp: new Date(Date.UTC(2023, 10 + index, 1)).toISOString(),
     value: value.toFixed(2),
     invested_value: invested.toFixed(2),
     performance_percent: performancePercent.toFixed(2),
