@@ -21,7 +21,7 @@ const accounts = [
   },
   {
     id: 2, connection_id: 2, source: "volksbank", external_id: "demo-savings",
-    name: "Rainy-day fund", currency: "EUR", account_type: "savings",
+    name: "Household account", currency: "EUR", account_type: "checking",
     iban: "DE00 0000 0000 0000 0000 02", is_active: true,
     current_balance: "7600.00", available_balance: "7600.00",
     balance_updated_at: "2026-09-30T08:42:00Z",
@@ -35,8 +35,8 @@ const accounts = [
 ];
 
 const connections = [
-  { id: 1, source: "volksbank", provider: "sparkasse", name: "Main bank", created_at: "2026-01-03T10:00:00Z", updated_at: "2026-09-30T08:45:00Z", last_error: null, public_fields: {} },
-  { id: 2, source: "volksbank", provider: "dkb", name: "Savings bank", created_at: "2026-01-03T10:00:00Z", updated_at: "2026-09-30T08:42:00Z", last_error: null, public_fields: {} },
+  { id: 1, source: "volksbank", provider: "generic_fints", name: "Main bank", created_at: "2026-01-03T10:00:00Z", updated_at: "2026-09-30T08:45:00Z", last_error: null, public_fields: { bank_brand: "sparkasse", bank_name: "Demo Sparkasse" } },
+  { id: 2, source: "volksbank", provider: "generic_fints", name: "Household bank", created_at: "2026-01-03T10:00:00Z", updated_at: "2026-09-30T08:42:00Z", last_error: null, public_fields: { bank_brand: "volksbank", bank_name: "Demo Volksbank" } },
   { id: 3, source: "trade_republic", provider: "trade_republic", name: "Investment account", created_at: "2026-01-03T10:00:00Z", updated_at: "2026-09-30T08:40:00Z", last_error: null, public_fields: {} },
 ];
 
@@ -58,11 +58,11 @@ const assets = {
 
 const transactions = [
   { id: 101, account_id: 1, external_id: "tx-101", booking_date: "2026-09-29", amount: "3850.00", currency: "EUR", raw_text: "NORTHSTAR LABS · MONTHLY SALARY", counterparty: "Northstar Labs", kind: "income", category_id: 8, categorized_by: "rule", categorization_reason: "Recurring monthly income" },
-  { id: 102, account_id: 1, external_id: "tx-102", booking_date: "2026-09-28", amount: "-82.45", currency: "EUR", raw_text: "MARKET HALL · WEEKLY GROCERIES", counterparty: "Market Hall", kind: "expense", category_id: 2, categorized_by: "llm", categorization_reason: "The merchant and booking text indicate a grocery purchase." },
-  { id: 103, account_id: 1, external_id: "tx-103", booking_date: "2026-09-26", amount: "-42.80", currency: "EUR", raw_text: "HARBOUR KITCHEN · DINNER", counterparty: "Harbour Kitchen", kind: "expense", category_id: 3, categorized_by: "llm", categorization_reason: "The booking refers to a restaurant visit." },
+  { id: 102, account_id: 2, external_id: "tx-102", booking_date: "2026-09-28", amount: "-82.45", currency: "EUR", raw_text: "MARKET HALL · WEEKLY GROCERIES", counterparty: "Market Hall", kind: "expense", category_id: 2, categorized_by: "llm", categorization_reason: "The merchant and booking text indicate a grocery purchase." },
+  { id: 103, account_id: 2, external_id: "tx-103", booking_date: "2026-09-26", amount: "-42.80", currency: "EUR", raw_text: "HARBOUR KITCHEN · DINNER", counterparty: "Harbour Kitchen", kind: "expense", category_id: 3, categorized_by: "llm", categorization_reason: "The booking refers to a restaurant visit." },
   { id: 104, account_id: 1, external_id: "tx-104", booking_date: "2026-09-23", amount: "-18.60", currency: "EUR", raw_text: "CITY TRANSIT · MONTHLY PASS", counterparty: "City Transit", kind: "expense", category_id: 4, categorized_by: "rule", categorization_reason: "Public transport payment" },
   { id: 105, account_id: 1, external_id: "tx-105", booking_date: "2026-09-20", amount: "-1240.00", currency: "EUR", raw_text: "RIVERSIDE HOUSING · RENT", counterparty: "Riverside Housing", kind: "expense", category_id: 1, categorized_by: "rule", categorization_reason: "Recurring rent payment" },
-  { id: 106, account_id: 1, external_id: "tx-106", booking_date: "2026-09-18", amount: "-16.90", currency: "EUR", raw_text: "STORYSTREAM · SUBSCRIPTION", counterparty: "StoryStream", kind: "expense", category_id: 6, categorized_by: "rule", categorization_reason: "Recurring media subscription" },
+  { id: 106, account_id: 2, external_id: "tx-106", booking_date: "2026-09-18", amount: "-16.90", currency: "EUR", raw_text: "STORYSTREAM · SUBSCRIPTION", counterparty: "StoryStream", kind: "expense", category_id: 6, categorized_by: "rule", categorization_reason: "Recurring media subscription" },
   { id: 107, account_id: 1, external_id: "tx-107", booking_date: "2026-09-14", amount: "-58.00", currency: "EUR", raw_text: "CITY THEATRE · TWO TICKETS", counterparty: "City Theatre", kind: "expense", category_id: 5, categorized_by: "llm", categorization_reason: "The merchant is a cultural venue." },
   { id: 108, account_id: 1, external_id: "tx-108", booking_date: "2026-09-10", amount: "-650.00", currency: "EUR", raw_text: "TRANSFER · RAINY-DAY FUND", counterparty: "Rainy-day fund", kind: "transfer", category_id: 7, categorized_by: "rule", categorization_reason: "Transfer between own accounts" },
   { id: 109, account_id: 3, external_id: "tx-109", booking_date: "2026-09-08", amount: "-450.00", currency: "EUR", raw_text: "INVESTMENT PLAN · GLOBAL EQUITY", counterparty: "Investment plan", kind: "expense", category_id: 7, categorized_by: "rule", categorization_reason: "Recurring investment plan" },
@@ -139,12 +139,19 @@ const flow = {
 
 const conversation = {
   id: 1, title: "Spending review", preview: "Your spending stayed below the monthly average…",
-  message_count: 4, created_at: "2026-09-30T09:00:00Z", updated_at: "2026-09-30T09:04:00Z",
+  message_count: 2, created_at: "2026-09-30T09:00:00Z", updated_at: "2026-09-30T09:01:00Z",
   messages: [
     { id: 1, role: "user", content: "How did my spending develop over the last three months?", created_at: "2026-09-30T09:00:00Z" },
-    { id: 2, role: "assistant", content: "Your everyday spending stayed **6% below** the previous three-month average. Housing remained stable, while dining and leisure declined in September.", created_at: "2026-09-30T09:01:00Z" },
-    { id: 3, role: "user", content: "What stands out most?", created_at: "2026-09-30T09:03:00Z" },
-    { id: 4, role: "assistant", content: "The clearest signal is consistency: recurring costs are stable and you increased monthly wealth building to **€600** without reducing your cash buffer.", created_at: "2026-09-30T09:04:00Z" },
+    {
+      id: 2,
+      role: "assistant",
+      content: `Your everyday spending stayed **6% below** the previous three-month average. At the same time, monthly wealth building increased steadily.
+
+\`\`\`chart
+{"type":"bar","title":"Monthly wealth building","labels":["Jul","Aug","Sep"],"series":[{"name":"Invested","values":[550,600,650]}]}
+\`\`\``,
+      created_at: "2026-09-30T09:01:00Z",
+    },
   ],
 };
 

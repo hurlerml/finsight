@@ -19,6 +19,14 @@ async function prepare(page: Page, route: string, viewport: { width: number; hei
         transition-duration: 0s !important;
         caret-color: transparent !important;
       }
+      html, body, * {
+        scrollbar-width: none !important;
+      }
+      html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
     `,
   });
   await page.evaluate(() => document.fonts.ready);
@@ -48,6 +56,6 @@ test("mobile overview", async ({ page }) => {
 test("mobile local finance chat", async ({ page }) => {
   await prepare(page, "/chat", { width: 390, height: 844 });
   await expect(page.getByRole("region", { name: "finsight agent" })).toBeVisible();
-  await expect(page.getByText("The clearest signal is consistency", { exact: false })).toBeVisible();
+  await expect(page.getByText("Monthly wealth building", { exact: true })).toBeVisible();
   await page.screenshot({ path: output("chat-mobile-dark.png"), animations: "disabled" });
 });
