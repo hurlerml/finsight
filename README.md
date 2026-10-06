@@ -39,6 +39,29 @@ provide financial advice.
 
 [Features](#features) · [Getting started](#getting-started) · [Adapters](#supported-adapters) · [Credentials](#credentials-and-secrets) · [Privacy](#privacy) · [Development](#development) · [Related projects](#related-projects)
 
+## A private finance workspace on every screen
+
+<p align="center">
+  <img src="docs/screenshots/overview-desktop-dark.png" alt="finsight overview with synthetic data" width="100%">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/overview-mobile-dark.png" alt="finsight mobile overview with synthetic data" width="45%">
+  &nbsp;
+  <img src="docs/screenshots/chat-mobile-dark.png" alt="Local finance chat in the finsight mobile interface" width="45%">
+</p>
+
+The responsive interface is designed to feel at home on a phone, including a
+mobile navigation dock, touch-friendly charts and the same local finance chat.
+Every value and booking shown above comes from the repository's deterministic
+[screenshot fixtures](docs/screenshots/README.md), not from a real account.
+
+<details>
+  <summary>View the transaction workspace</summary>
+  <br>
+  <img src="docs/screenshots/transactions-desktop-dark.png" alt="finsight transaction workspace with synthetic data" width="100%">
+</details>
+
 ## Features
 
 - **Automatic categorization:** local AI, editable categories, tags and transfer
@@ -241,6 +264,13 @@ The development UI runs at [localhost:5173](http://localhost:5173).
 See [CONTRIBUTING.md](CONTRIBUTING.md) for tests and development setup,
 [architecture](docs/architecture.md), [API overview](docs/api.md) and
 [changelog](CHANGELOG.md) for more detail.
+
+Public screenshots are generated from the real frontend with synthetic API
+responses. Regenerate them without a backend or database via:
+
+```bash
+docker compose -f docker-compose.screenshots.yml run --build --rm screenshots
+```
 
 Possible next steps include financial goals with progress tracking,
 recurring-payment and transaction-anomaly detection, and broader currency

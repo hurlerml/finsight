@@ -1,0 +1,11 @@
+name: finsight-screenshots
+
+services:
+  screenshots:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.screenshots
+    environment:
+      CI: "true"
+    volumes:
+      - ./docs/screenshots:/workspace/docs/screenshots
