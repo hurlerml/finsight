@@ -39,6 +39,69 @@ provide financial advice.
 
 [Features](#features) · [Getting started](#getting-started) · [Adapters](#supported-adapters) · [Credentials](#credentials-and-secrets) · [Privacy](#privacy) · [Development](#development) · [Related projects](#related-projects)
 
+## Screenshots
+
+<table>
+  <tr>
+    <td width="33.33%" align="center" valign="middle">
+      <a href="docs/screenshots/overview-desktop-dark.png">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/overview-desktop-dark.png">
+          <img src="docs/screenshots/overview-desktop-light.png" alt="finsight overview with synthetic data" width="100%">
+        </picture>
+      </a>
+    </td>
+    <td width="33.33%" align="center" valign="middle">
+      <a href="docs/screenshots/transactions-desktop-dark.png">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/transactions-desktop-dark.png">
+          <img src="docs/screenshots/transactions-desktop-light.png" alt="finsight transaction workspace with synthetic data" width="100%">
+        </picture>
+      </a>
+    </td>
+    <td width="33.33%" align="center" valign="middle">
+      <a href="docs/screenshots/assets-desktop-dark.png">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/assets-desktop-dark.png">
+          <img src="docs/screenshots/assets-desktop-light.png" alt="finsight asset performance with synthetic portfolios" width="100%">
+        </picture>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td width="33.33%" align="center" valign="middle">
+      <div align="center">
+        <a href="docs/screenshots/cashflow-mobile-dark.png">
+          <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/cashflow-mobile-dark.png">
+            <img src="docs/screenshots/cashflow-mobile-light.png" alt="finsight mobile cashflow diagram with synthetic income and expenses" width="58%">
+          </picture>
+        </a>
+      </div>
+    </td>
+    <td width="33.33%" align="center" valign="middle">
+      <div align="center">
+        <a href="docs/screenshots/chat-mobile-dark.png">
+          <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/chat-mobile-dark.png">
+            <img src="docs/screenshots/chat-mobile-light.png" alt="Local finance chat with generated analysis chart" width="58%">
+          </picture>
+        </a>
+      </div>
+    </td>
+    <td width="33.33%" align="center" valign="middle">
+      <div align="center">
+        <a href="docs/screenshots/categories-mobile-dark.png">
+          <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/categories-mobile-dark.png">
+            <img src="docs/screenshots/categories-mobile-light.png" alt="finsight mobile category settings with synthetic data" width="58%">
+          </picture>
+        </a>
+      </div>
+    </td>
+  </tr>
+</table>
+
 ## Features
 
 - **Automatic categorization:** local AI, editable categories, tags and transfer
@@ -241,6 +304,13 @@ The development UI runs at [localhost:5173](http://localhost:5173).
 See [CONTRIBUTING.md](CONTRIBUTING.md) for tests and development setup,
 [architecture](docs/architecture.md), [API overview](docs/api.md) and
 [changelog](CHANGELOG.md) for more detail.
+
+Public screenshots are generated from the real frontend with synthetic API
+responses. Regenerate them without a backend or database via:
+
+```bash
+docker compose -f docker-compose.screenshots.yml run --build --rm screenshots
+```
 
 Possible next steps include financial goals with progress tracking,
 recurring-payment and transaction-anomaly detection, and broader currency

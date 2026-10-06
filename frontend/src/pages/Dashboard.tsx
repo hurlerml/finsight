@@ -1472,7 +1472,7 @@ export function DashboardPage() {
 
           <div className="flex items-center justify-end">
             <div
-              className="relative grid h-28 w-28 shrink-0 place-items-center rounded-full p-[0.7rem] shadow-[0_16px_36px_-24px_hsl(var(--glass-shadow)/0.8)] sm:h-36 sm:w-36 sm:p-[0.78rem]"
+              className="relative grid h-28 w-28 shrink-0 place-items-center rounded-full p-[0.7rem] sm:h-36 sm:w-36 sm:p-[0.78rem]"
               style={{
                 background: wealthAssets > 0
                   ? `conic-gradient(hsl(var(--accent)) 0 ${liquidShare}%, hsl(var(--primary)) ${liquidShare}% 100%)`
@@ -1481,7 +1481,7 @@ export function DashboardPage() {
               role="img"
               aria-label={t("dashboard.wealthComposition")}
             >
-              <div className="grid h-full w-full place-items-center rounded-full border border-white/35 bg-card/90 text-center shadow-[inset_0_1px_0_hsl(var(--glass-highlight)/0.55)] backdrop-blur-xl">
+              <div className="grid h-full w-full place-items-center rounded-full border border-white/35 bg-card/90 text-center">
                 <div>
                   <p className="text-lg font-semibold tabular-nums sm:text-xl">
                     {wealthReady ? `${Math.round(investedShare)} %` : "—"}

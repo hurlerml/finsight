@@ -79,3 +79,5 @@ jobs:
         run: docker compose -f docker-compose-dev.yml config --quiet
       - name: Validate production compose
         run: docker compose -f docker-compose.yml config --quiet
+      - name: Validate screenshot compose
+        run: docker compose -f docker-compose.screenshots.yml config --quiet

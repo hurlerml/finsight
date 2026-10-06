@@ -925,6 +925,22 @@ export function TransactionsPage() {
                                 ? connectionMap[account.connection_id]?.provider
                                 : undefined
                             }
+                            bankBrand={
+                              account?.connection_id
+                                ? connectionMap[account.connection_id]?.public_fields.bank_brand
+                                : undefined
+                            }
+                            bankName={
+                              account?.connection_id
+                                ? connectionMap[account.connection_id]?.public_fields.bank_name
+                                  || connectionMap[account.connection_id]?.name
+                                : undefined
+                            }
+                            bic={
+                              account?.connection_id
+                                ? connectionMap[account.connection_id]?.public_fields.bank_bic
+                                : undefined
+                            }
                             accountType={account?.account_type}
                             className="h-3.5 w-3.5"
                           />
@@ -1003,6 +1019,22 @@ export function TransactionsPage() {
                       provider={
                         account?.connection_id
                           ? connectionMap[account.connection_id]?.provider
+                          : undefined
+                      }
+                      bankBrand={
+                        account?.connection_id
+                          ? connectionMap[account.connection_id]?.public_fields.bank_brand
+                          : undefined
+                      }
+                      bankName={
+                        account?.connection_id
+                          ? connectionMap[account.connection_id]?.public_fields.bank_name
+                            || connectionMap[account.connection_id]?.name
+                          : undefined
+                      }
+                      bic={
+                        account?.connection_id
+                          ? connectionMap[account.connection_id]?.public_fields.bank_bic
                           : undefined
                       }
                       accountType={account?.account_type}
