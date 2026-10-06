@@ -15,6 +15,9 @@ export default defineConfig({
     reducedMotion: "reduce",
     serviceWorkers: "block",
     channel: "chromium",
+    launchOptions: {
+      args: ["--hide-scrollbars"],
+    },
   },
   webServer: {
     command: "npm run build && npm run preview -- --host 127.0.0.1 --port 4173",
