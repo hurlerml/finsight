@@ -37,7 +37,7 @@ provide financial advice.
 > or domain. For remote access, use a private network such as Tailscale or
 > WireGuard and restrict access to trusted devices.
 
-[Features](#features) · [Related projects](#related-projects) · [Adapters](#supported-adapters) · [Getting started](#getting-started) · [Credentials](#credentials-and-secrets) · [Privacy](#privacy) · [Development](#development)
+[Features](#features) · [Getting started](#getting-started) · [Adapters](#supported-adapters) · [Credentials](#credentials-and-secrets) · [Privacy](#privacy) · [Development](#development) · [Related projects](#related-projects)
 
 ## Features
 
@@ -50,46 +50,6 @@ provide financial advice.
   Trade Republic (unofficial integration), Binance, Trading 212 and Coinbase.
 - **Keep control:** encrypted financial records, chat and embeddings; a responsive
   English/German interface with a presentation mode.
-
-## Related projects
-
-Several mature tools overlap with parts of finsight, and each goes deeper in
-its own area than this early prototype.
-
-[Portfolio Performance](https://github.com/portfolio-performance/portfolio) is
-a mature local application for investment accounting, including PDF imports
-from many German financial institutions.
-[Firefly III](https://github.com/firefly-iii/firefly-iii) and
-[Actual Budget](https://github.com/actualbudget/actual) focus on transactions
-and budgets; [txporter](https://github.com/develff/txporter) can feed German
-FinTS accounts into Firefly III.
-[Ghostfolio](https://github.com/ghostfolio/ghostfolio) and
-[rotki](https://github.com/rotki/rotki) track wealth, with rotki particularly
-focused on crypto and local data ownership.
-[Doughbox](https://github.com/alxjpzmn/doughbox) imports statements from brokers
-including Trade Republic and Trading 212 into a self-hosted portfolio.
-
-The cloud services named above, along with spending apps such as Finanzguru,
-address a broader version of the original problem. Self-hosted net-worth
-trackers such as [Finanze](https://github.com/finanze/finanze) aggregate bank
-data through open-banking providers rather than a local FinTS client. Smaller
-GitHub projects use local models to categorize imported statements or
-synchronize individual brokers.
-
-Those projects may be a better fit when you need their depth in accounting,
-budgeting or portfolio analysis. finsight takes a different, narrower approach:
-read-only German FinTS, selected broker and exchange APIs, and a local language
-model in one single-user web application.
-
-## Supported adapters
-
-| Source             | Status                                                                                                                                                                                                                                                                                                                                                   | Imported data                                                                      |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| **FinTS**          | Uses the internal HBCI4Java Spring service for the searchable German bank directory and read-only synchronization. Availability still depends on the selected bank's FinTS service and authentication method.                                                                                                                                            | Accounts, balances and transactions; read-only.                                    |
-| **Trade Republic** | **Unofficial and experimental.** The read-only adapter talks to Trade Republic's undocumented web protocol directly. Its protocol handling was informed by the MIT-licensed [`pytr`](https://github.com/pytr-org/pytr) project; `pytr` is not bundled as a runtime dependency. Neither integration is provided, endorsed or supported by Trade Republic. | Cash transactions, portfolio positions and available performance history.          |
-| **Binance**        | Uses Binance's documented REST API with a dedicated read-only API key. Trading and withdrawals must remain disabled.                                                                                                                                                                                                                                     | Balances, spot trades, supported history and reconstructed position performance.   |
-| **Trading 212**    | Uses the official Public API in read-only mode. The API is currently beta and supports Invest and Stocks ISA accounts.                                                                                                                                                                                                                                   | Cash balance and movements, positions, cost basis and execution history.           |
-| **Coinbase**       | Uses the official Advanced Trade REST API over `httpx` with Coinbase's documented CDP JWT authentication and a view-only API key.                                                                                                                                                                                                                        | Fiat balance, portfolio breakdown, EUR spot fills and supported EUR price history. |
 
 ## Getting started
 
@@ -181,6 +141,16 @@ connect directly to the machine running finsight. For remote access from outside
 that network, use a private VPN such as [Tailscale](https://tailscale.com/) or
 WireGuard. Never use router port forwarding or expose the application through a
 public reverse proxy, public domain or other internet-facing endpoint.
+
+## Supported adapters
+
+| Source             | Status                                                                                                                                                                                                                                                                                                                                                   | Imported data                                                                      |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **FinTS**          | Uses the internal HBCI4Java Spring service for the searchable German bank directory and read-only synchronization. Availability still depends on the selected bank's FinTS service and authentication method.                                                                                                                                            | Accounts, balances and transactions; read-only.                                    |
+| **Trade Republic** | **Unofficial and experimental.** The read-only adapter talks to Trade Republic's undocumented web protocol directly. Its protocol handling was informed by the MIT-licensed [`pytr`](https://github.com/pytr-org/pytr) project; `pytr` is not bundled as a runtime dependency. Neither integration is provided, endorsed or supported by Trade Republic. | Cash transactions, portfolio positions and available performance history.          |
+| **Binance**        | Uses Binance's documented REST API with a dedicated read-only API key. Trading and withdrawals must remain disabled.                                                                                                                                                                                                                                     | Balances, spot trades, supported history and reconstructed position performance.   |
+| **Trading 212**    | Uses the official Public API in read-only mode. The API is currently beta and supports Invest and Stocks ISA accounts.                                                                                                                                                                                                                                   | Cash balance and movements, positions, cost basis and execution history.           |
+| **Coinbase**       | Uses the official Advanced Trade REST API over `httpx` with Coinbase's documented CDP JWT authentication and a view-only API key.                                                                                                                                                                                                                        | Fiat balance, portfolio breakdown, EUR spot fills and supported EUR price history. |
 
 ## Credentials and secrets
 
@@ -275,6 +245,36 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for tests and development setup,
 Possible next steps include financial goals with progress tracking,
 recurring-payment and transaction-anomaly detection, and broader currency
 support. The current focus is German accounts and EUR-based analysis.
+
+## Related projects
+
+Several mature tools overlap with parts of finsight, and each goes deeper in
+its own area than this early prototype.
+
+[Portfolio Performance](https://github.com/portfolio-performance/portfolio) is
+a mature local application for investment accounting, including PDF imports
+from many German financial institutions.
+[Firefly III](https://github.com/firefly-iii/firefly-iii) and
+[Actual Budget](https://github.com/actualbudget/actual) focus on transactions
+and budgets; [txporter](https://github.com/develff/txporter) can feed German
+FinTS accounts into Firefly III.
+[Ghostfolio](https://github.com/ghostfolio/ghostfolio) and
+[rotki](https://github.com/rotki/rotki) track wealth, with rotki particularly
+focused on crypto and local data ownership.
+[Doughbox](https://github.com/alxjpzmn/doughbox) imports statements from brokers
+including Trade Republic and Trading 212 into a self-hosted portfolio.
+
+The cloud services named above, along with spending apps such as Finanzguru,
+address a broader version of the original problem. Self-hosted net-worth
+trackers such as [Finanze](https://github.com/finanze/finanze) aggregate bank
+data through open-banking providers rather than a local FinTS client. Smaller
+GitHub projects use local models to categorize imported statements or
+synchronize individual brokers.
+
+Those projects may be a better fit when you need their depth in accounting,
+budgeting or portfolio analysis. finsight takes a different, narrower approach:
+read-only German FinTS, selected broker and exchange APIs, and a local language
+model in one single-user web application.
 
 ## License
 
