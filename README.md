@@ -70,18 +70,10 @@ provide financial advice.
   </tr>
   <tr>
     <td width="33.33%" align="center" valign="middle">
-      <a href="docs/screenshots/cashflow-desktop-dark.png">
+      <a href="docs/screenshots/cashflow-mobile-dark.png">
         <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/cashflow-desktop-dark.png">
-          <img src="docs/screenshots/cashflow-desktop-light.png" alt="finsight cashflow diagram with synthetic income and expenses" width="100%">
-        </picture>
-      </a>
-    </td>
-    <td width="33.33%" align="center" valign="middle">
-      <a href="docs/screenshots/overview-mobile-dark.png">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/overview-mobile-dark.png">
-          <img src="docs/screenshots/overview-mobile-light.png" alt="finsight mobile overview with synthetic data" width="46%">
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/cashflow-mobile-dark.png">
+          <img src="docs/screenshots/cashflow-mobile-light.png" alt="finsight mobile cashflow diagram with synthetic income and expenses" width="58%">
         </picture>
       </a>
     </td>
@@ -89,7 +81,15 @@ provide financial advice.
       <a href="docs/screenshots/chat-mobile-dark.png">
         <picture>
           <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/chat-mobile-dark.png">
-          <img src="docs/screenshots/chat-mobile-light.png" alt="Local finance chat with generated analysis chart" width="46%">
+          <img src="docs/screenshots/chat-mobile-light.png" alt="Local finance chat with generated analysis chart" width="58%">
+        </picture>
+      </a>
+    </td>
+    <td width="33.33%" align="center" valign="middle">
+      <a href="docs/screenshots/categories-mobile-dark.png">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/categories-mobile-dark.png">
+          <img src="docs/screenshots/categories-mobile-light.png" alt="finsight mobile category settings with synthetic data" width="58%">
         </picture>
       </a>
     </td>

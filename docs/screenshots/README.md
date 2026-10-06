@@ -14,6 +14,6 @@ Review the generated files before committing them. Update
 `frontend/screenshots/fixtures.ts` when a new screen needs additional API data.
 
 The suite captures matching light and dark variants of the desktop overview,
-transactions, assets and cashflow detail as well as the mobile overview and
-local finance chat. GitHub selects the matching image through
+transactions and assets as well as mobile cashflow, local finance chat and
+category settings. GitHub selects the matching image through
 `prefers-color-scheme` in the root README.

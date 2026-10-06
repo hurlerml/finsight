@@ -48,19 +48,13 @@ for (const theme of themes) {
     await page.screenshot({ path: output(`assets-desktop-${theme}.png`), animations: "disabled" });
   });
 
-  test(`desktop cashflow detail · ${theme}`, async ({ page }) => {
-    await prepare(page, "/", { width: 1440, height: 1000 }, theme);
-    const heading = page.getByRole("heading", { name: "Cashflow", exact: true });
-    const section = heading.locator("xpath=ancestor::section[1]");
-    await expect(section).toBeVisible();
-    await section.screenshot({ path: output(`cashflow-desktop-${theme}.png`), animations: "disabled" });
-  });
-
-  test(`mobile overview · ${theme}`, async ({ page }) => {
+  test(`mobile cashflow · ${theme}`, async ({ page }) => {
     await prepare(page, "/", { width: 390, height: 844 }, theme);
-    await expect(page.getByRole("heading", { name: "Overview" })).toBeVisible();
+    const heading = page.getByRole("heading", { name: "Cashflow", exact: true });
+    await heading.scrollIntoViewIfNeeded();
+    await expect(heading).toBeVisible();
     await expect(page.getByRole("navigation").last()).toBeVisible();
-    await page.screenshot({ path: output(`overview-mobile-${theme}.png`), animations: "disabled" });
+    await page.screenshot({ path: output(`cashflow-mobile-${theme}.png`), animations: "disabled" });
   });
 
   test(`mobile local finance chat · ${theme}`, async ({ page }) => {
@@ -68,5 +62,13 @@ for (const theme of themes) {
     await expect(page.getByRole("region", { name: "finsight agent" })).toBeVisible();
     await expect(page.getByText("Monthly wealth building", { exact: true })).toBeVisible();
     await page.screenshot({ path: output(`chat-mobile-${theme}.png`), animations: "disabled" });
+  });
+
+  test(`mobile categories · ${theme}`, async ({ page }) => {
+    await prepare(page, "/categories", { width: 390, height: 844 }, theme);
+    await expect(page.getByRole("heading", { name: "Categories" })).toBeVisible();
+    await expect(page.getByText("Groceries", { exact: true })).toBeVisible();
+    await expect(page.getByRole("navigation").last()).toBeVisible();
+    await page.screenshot({ path: output(`categories-mobile-${theme}.png`), animations: "disabled" });
   });
 }
