@@ -178,13 +178,13 @@ function json(route: Route, body: unknown, status = 200) {
   return route.fulfill({ status, contentType: "application/json", body: JSON.stringify(body) });
 }
 
-export async function installScreenshotApi(page: Page) {
-  await page.addInitScript(() => {
+export async function installScreenshotApi(page: Page, theme: "dark" | "light" = "dark") {
+  await page.addInitScript((selectedTheme) => {
     window.localStorage.setItem("finsight.lang", "en");
-    window.localStorage.setItem("finsight.theme", "dark");
+    window.localStorage.setItem("finsight.theme", selectedTheme);
     window.localStorage.removeItem("finsight.demo-mode");
     window.sessionStorage.setItem("finsight.vaultToken", "screenshot-fixture-token");
-  });
+  }, theme);
 
   await page.route(/^https?:\/\/[^/]+\/api\//, async (route) => {
     const url = new URL(route.request().url());

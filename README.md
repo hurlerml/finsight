@@ -45,38 +45,56 @@ provide financial advice.
   <tr>
     <td colspan="2" align="center">
       <a href="docs/screenshots/overview-desktop-dark.png">
-        <img src="docs/screenshots/overview-desktop-dark.png" alt="finsight overview with synthetic data" width="100%">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/overview-desktop-dark.png">
+          <img src="docs/screenshots/overview-desktop-light.png" alt="finsight overview with synthetic data" width="100%">
+        </picture>
       </a>
     </td>
   </tr>
   <tr>
     <td width="50%" align="center" valign="top">
       <a href="docs/screenshots/overview-mobile-dark.png">
-        <img src="docs/screenshots/overview-mobile-dark.png" alt="finsight mobile overview with synthetic data" width="100%">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/overview-mobile-dark.png">
+          <img src="docs/screenshots/overview-mobile-light.png" alt="finsight mobile overview with synthetic data" width="100%">
+        </picture>
       </a>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/screenshots/chat-mobile-dark.png">
-        <img src="docs/screenshots/chat-mobile-dark.png" alt="Local finance chat with generated analysis chart" width="100%">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/chat-mobile-dark.png">
+          <img src="docs/screenshots/chat-mobile-light.png" alt="Local finance chat with generated analysis chart" width="100%">
+        </picture>
       </a>
     </td>
   </tr>
   <tr>
     <td colspan="2" align="center">
       <a href="docs/screenshots/transactions-desktop-dark.png">
-        <img src="docs/screenshots/transactions-desktop-dark.png" alt="finsight transaction workspace with synthetic data" width="100%">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/transactions-desktop-dark.png">
+          <img src="docs/screenshots/transactions-desktop-light.png" alt="finsight transaction workspace with synthetic data" width="100%">
+        </picture>
       </a>
     </td>
   </tr>
   <tr>
     <td width="50%" align="center" valign="top">
       <a href="docs/screenshots/assets-desktop-dark.png">
-        <img src="docs/screenshots/assets-desktop-dark.png" alt="finsight asset performance with synthetic portfolios" width="100%">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/assets-desktop-dark.png">
+          <img src="docs/screenshots/assets-desktop-light.png" alt="finsight asset performance with synthetic portfolios" width="100%">
+        </picture>
       </a>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/screenshots/cashflow-desktop-dark.png">
-        <img src="docs/screenshots/cashflow-desktop-dark.png" alt="finsight cashflow diagram with synthetic income and expenses" width="100%">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/cashflow-desktop-dark.png">
+          <img src="docs/screenshots/cashflow-desktop-light.png" alt="finsight cashflow diagram with synthetic income and expenses" width="100%">
+        </picture>
       </a>
     </td>
   </tr>
