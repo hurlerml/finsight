@@ -39,7 +39,7 @@ provide financial advice.
 
 [Features](#features) · [Getting started](#getting-started) · [Adapters](#supported-adapters) · [Credentials](#credentials-and-secrets) · [Privacy](#privacy) · [Development](#development) · [Related projects](#related-projects)
 
-## A private finance workspace on every screen
+## Screenshots
 
 <table>
   <tr>
@@ -47,7 +47,6 @@ provide financial advice.
       <a href="docs/screenshots/overview-desktop-dark.png">
         <img src="docs/screenshots/overview-desktop-dark.png" alt="finsight overview with synthetic data" width="100%">
       </a>
-      <br><sub><strong>Overview</strong> · current net worth and cashflow analysis</sub>
     </td>
   </tr>
   <tr>
@@ -55,13 +54,11 @@ provide financial advice.
       <a href="docs/screenshots/overview-mobile-dark.png">
         <img src="docs/screenshots/overview-mobile-dark.png" alt="finsight mobile overview with synthetic data" width="100%">
       </a>
-      <br><sub><strong>Mobile overview</strong> · app-like navigation and touch-friendly charts</sub>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/screenshots/chat-mobile-dark.png">
         <img src="docs/screenshots/chat-mobile-dark.png" alt="Local finance chat with generated analysis chart" width="100%">
       </a>
-      <br><sub><strong>Local finance chat</strong> · explanations, calculations and generated charts</sub>
     </td>
   </tr>
   <tr>
@@ -69,7 +66,6 @@ provide financial advice.
       <a href="docs/screenshots/transactions-desktop-dark.png">
         <img src="docs/screenshots/transactions-desktop-dark.png" alt="finsight transaction workspace with synthetic data" width="100%">
       </a>
-      <br><sub><strong>Transactions</strong> · accounts, categories and local AI explanations in one place</sub>
     </td>
   </tr>
   <tr>
@@ -77,22 +73,14 @@ provide financial advice.
       <a href="docs/screenshots/assets-desktop-dark.png">
         <img src="docs/screenshots/assets-desktop-dark.png" alt="finsight asset performance with synthetic portfolios" width="100%">
       </a>
-      <br><sub><strong>Assets</strong> · portfolio performance, cost basis and positions</sub>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/screenshots/cashflow-desktop-dark.png">
         <img src="docs/screenshots/cashflow-desktop-dark.png" alt="finsight cashflow diagram with synthetic income and expenses" width="100%">
       </a>
-      <br><sub><strong>Cashflow</strong> · see where money enters, leaves and builds wealth</sub>
     </td>
   </tr>
 </table>
-
-The responsive interface is designed to feel at home on a phone, including a
-mobile navigation dock, touch-friendly charts and the same local finance chat.
-Every value and booking shown above comes from the repository's deterministic
-[screenshot fixtures](docs/screenshots/README.md), not from a real account. Click
-any tile to open the original image.
 
 ## Features
 

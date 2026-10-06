@@ -155,10 +155,22 @@ const conversation = {
   ],
 };
 
-const historyPoints = Array.from({ length: 18 }, (_, index) => {
-  const value = 29500 + index * 520 + Math.sin(index * 0.9) * 620;
-  const invested = 28500 + index * 260;
-  return { timestamp: new Date(Date.UTC(2025, 4 + index, 1)).toISOString(), value: value.toFixed(2), invested_value: invested.toFixed(2), performance_percent: (((value - invested) / invested) * 100).toFixed(2) };
+const syntheticPerformancePercent = [
+  -3.2, -1.8, -4.1, -2.6, 0.7, -0.9, 1.6, 0.2, 2.9, 1.4,
+  4.6, 3.0, 5.7, 4.1, 6.3, 5.0, 7.9, 6.2, 9.1, 7.3,
+  10.4, 8.9, 11.8, 10.2, 13.1, 11.4, 14.8, 12.6, 15.5, 14.3,
+];
+
+const historyPoints = syntheticPerformancePercent.map((performancePercent, index) => {
+  const progress = index / (syntheticPerformancePercent.length - 1);
+  const invested = 26000 + (33596.14 - 26000) * progress;
+  const value = invested * (1 + performancePercent / 100);
+  return {
+    timestamp: new Date(Date.UTC(2024, 4 + index, 1)).toISOString(),
+    value: value.toFixed(2),
+    invested_value: invested.toFixed(2),
+    performance_percent: performancePercent.toFixed(2),
+  };
 });
 
 function json(route: Route, body: unknown, status = 200) {
