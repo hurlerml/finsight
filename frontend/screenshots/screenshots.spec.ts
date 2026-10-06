@@ -15,6 +15,10 @@ async function prepare(page: Page, route: string, viewport: { width: number; hei
   await page.waitForLoadState("networkidle");
   await page.addStyleTag({
     content: `
+      html {
+        scrollbar-gutter: auto !important;
+      }
+
       *, *::before, *::after {
         animation-duration: 0s !important;
         animation-delay: 0s !important;
