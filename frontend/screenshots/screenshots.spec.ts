@@ -19,14 +19,6 @@ async function prepare(page: Page, route: string, viewport: { width: number; hei
         transition-duration: 0s !important;
         caret-color: transparent !important;
       }
-      html, body, * {
-        scrollbar-width: none !important;
-      }
-      html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
-        display: none !important;
-        width: 0 !important;
-        height: 0 !important;
-      }
     `,
   });
   await page.evaluate(() => document.fonts.ready);
