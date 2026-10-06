@@ -3,6 +3,8 @@
   <img src="docs/assets/finsight-eye.svg" alt="finsight" width="240" height="64">
 </picture>
 
+[![CI](https://github.com/hurlerml/finsight/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/hurlerml/finsight/actions/workflows/ci.yml)
+
 **Insight-first finance. Your finances should be private — and stay private.**
 
 finsight grew from a simple frustration: my financial activity was spread
