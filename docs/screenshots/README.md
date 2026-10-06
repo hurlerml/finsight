@@ -12,3 +12,6 @@ docker compose -f docker-compose.screenshots.yml run --build --rm screenshots
 
 Review the generated files before committing them. Update
 `frontend/screenshots/fixtures.ts` when a new screen needs additional API data.
+
+The suite currently captures the desktop overview, transactions, assets and
+cashflow detail as well as the mobile overview and local finance chat.

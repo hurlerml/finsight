@@ -72,6 +72,20 @@ provide financial advice.
       <br><sub><strong>Transactions</strong> · accounts, categories and local AI explanations in one place</sub>
     </td>
   </tr>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <a href="docs/screenshots/assets-desktop-dark.png">
+        <img src="docs/screenshots/assets-desktop-dark.png" alt="finsight asset performance with synthetic portfolios" width="100%">
+      </a>
+      <br><sub><strong>Assets</strong> · portfolio performance, cost basis and positions</sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <a href="docs/screenshots/cashflow-desktop-dark.png">
+        <img src="docs/screenshots/cashflow-desktop-dark.png" alt="finsight cashflow diagram with synthetic income and expenses" width="100%">
+      </a>
+      <br><sub><strong>Cashflow</strong> · see where money enters, leaves and builds wealth</sub>
+    </td>
+  </tr>
 </table>
 
 The responsive interface is designed to feel at home on a phone, including a

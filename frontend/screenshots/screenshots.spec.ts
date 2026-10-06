@@ -38,6 +38,21 @@ test("desktop transactions", async ({ page }) => {
   await page.screenshot({ path: output("transactions-desktop-dark.png"), animations: "disabled" });
 });
 
+test("desktop assets", async ({ page }) => {
+  await prepare(page, "/assets", { width: 1440, height: 1000 });
+  await expect(page.getByRole("heading", { name: "Assets" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Global equity ETF/ })).toBeVisible();
+  await page.screenshot({ path: output("assets-desktop-dark.png"), animations: "disabled" });
+});
+
+test("desktop cashflow detail", async ({ page }) => {
+  await prepare(page, "/", { width: 1440, height: 1000 });
+  const heading = page.getByRole("heading", { name: "Cashflow", exact: true });
+  const section = heading.locator("xpath=ancestor::section[1]");
+  await expect(section).toBeVisible();
+  await section.screenshot({ path: output("cashflow-desktop-dark.png"), animations: "disabled" });
+});
+
 test("mobile overview", async ({ page }) => {
   await prepare(page, "/", { width: 390, height: 844 });
   await expect(page.getByRole("heading", { name: "Overview" })).toBeVisible();
