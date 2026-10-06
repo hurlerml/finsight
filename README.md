@@ -43,7 +43,7 @@ provide financial advice.
 
 <table>
   <tr>
-    <td colspan="2" align="center">
+    <td width="33.33%" align="center" valign="middle">
       <a href="docs/screenshots/overview-desktop-dark.png">
         <picture>
           <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/overview-desktop-dark.png">
@@ -51,27 +51,7 @@ provide financial advice.
         </picture>
       </a>
     </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center" valign="top">
-      <a href="docs/screenshots/overview-mobile-dark.png">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/overview-mobile-dark.png">
-          <img src="docs/screenshots/overview-mobile-light.png" alt="finsight mobile overview with synthetic data" width="100%">
-        </picture>
-      </a>
-    </td>
-    <td width="50%" align="center" valign="top">
-      <a href="docs/screenshots/chat-mobile-dark.png">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/chat-mobile-dark.png">
-          <img src="docs/screenshots/chat-mobile-light.png" alt="Local finance chat with generated analysis chart" width="100%">
-        </picture>
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
+    <td width="33.33%" align="center" valign="middle">
       <a href="docs/screenshots/transactions-desktop-dark.png">
         <picture>
           <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/transactions-desktop-dark.png">
@@ -79,9 +59,7 @@ provide financial advice.
         </picture>
       </a>
     </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center" valign="top">
+    <td width="33.33%" align="center" valign="middle">
       <a href="docs/screenshots/assets-desktop-dark.png">
         <picture>
           <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/assets-desktop-dark.png">
@@ -89,11 +67,29 @@ provide financial advice.
         </picture>
       </a>
     </td>
-    <td width="50%" align="center" valign="top">
+  </tr>
+  <tr>
+    <td width="33.33%" align="center" valign="middle">
       <a href="docs/screenshots/cashflow-desktop-dark.png">
         <picture>
           <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/cashflow-desktop-dark.png">
           <img src="docs/screenshots/cashflow-desktop-light.png" alt="finsight cashflow diagram with synthetic income and expenses" width="100%">
+        </picture>
+      </a>
+    </td>
+    <td width="33.33%" align="center" valign="middle">
+      <a href="docs/screenshots/overview-mobile-dark.png">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/overview-mobile-dark.png">
+          <img src="docs/screenshots/overview-mobile-light.png" alt="finsight mobile overview with synthetic data" width="46%">
+        </picture>
+      </a>
+    </td>
+    <td width="33.33%" align="center" valign="middle">
+      <a href="docs/screenshots/chat-mobile-dark.png">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/chat-mobile-dark.png">
+          <img src="docs/screenshots/chat-mobile-light.png" alt="Local finance chat with generated analysis chart" width="46%">
         </picture>
       </a>
     </td>
